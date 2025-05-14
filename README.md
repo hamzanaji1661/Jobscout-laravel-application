@@ -21,7 +21,11 @@ Employers can create their profiles, post job listings, and search for candidate
 10. To create a admin / superuser to access the backend of the site I made a custom command to create a superuser by running <code>php artisan make:superuser</code> it will ask you to provide the fullname and email and the password don't worry if the password you type is hidden it is just a security measure
 11. For Email verification I used 'mailpit' as it is actively maintained and easy to use with Docker it s recommanded to install Docker Desktop for a user-friendly UI
 12. After setting up your docker and the Mailpit image make sure your .env is configured as follow :
+
 MAIL_MAILER=smtp
+
 MAIL_HOST=127.0.0.1
+
 MAIL_PORT=1025
+
 you can access the mailpit interface with this link : http://localhost:8025

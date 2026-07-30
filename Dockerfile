@@ -1,6 +1,5 @@
 FROM php:8.2-apache
 
-# Install system packages
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -12,6 +11,8 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libonig-dev \
     libxml2-dev \
+    libicu-dev \
+    default-mysql-client \
     nodejs \
     npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -20,33 +21,35 @@ RUN apt-get update && apt-get install -y \
         pdo_mysql \
         mbstring \
         zip \
-        gd
+        gd \
+        intl
 
-# Enable Apache rewrite
 RUN a2enmod rewrite
 
-# Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copy project
-COPY . .
+COPY composer.json composer.lock ./
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Install Node dependencies
+COPY package*.json ./
+
 RUN npm install
 
-# Build Vite assets
+COPY . .
+
 RUN npm run build
 
-# Permissions
+RUN mkdir -p storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs
+
 RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Apache document root
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 /etc/apache2/sites-available/*.conf \
@@ -56,4 +59,5 @@ EXPOSE 80
 
 CMD php artisan config:cache && \
     php artisan route:cache && \
+    php artisan view:cache && \
     apache2-foreground

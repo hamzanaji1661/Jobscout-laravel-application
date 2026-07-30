@@ -44,6 +44,7 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 
 EXPOSE 80
 
-CMD php artisan config:cache || true && \
-    php artisan route:cache || true && \
+CMD php artisan migrate --force && \
+    php artisan config:cache && \
+    php artisan route:cache && \
     apache2-foreground

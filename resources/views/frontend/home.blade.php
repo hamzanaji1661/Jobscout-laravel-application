@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('page_title')#1 Job Portal Company @endsection
 @section('body_content')
 			<div class="home-banner margin-bottom-0" style="background:#eff6f2 url({{ asset('frontEndAssets/img/'.$HomePageData->image) }}) no-repeat;">

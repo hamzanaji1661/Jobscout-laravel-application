@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master')            
+@extends('frontend.layouts.master')            
 @section('page_title')Employee Sign Up @endsection
 @section('body_content')
 <!-- ======================= Top Breadcrubms ======================== -->

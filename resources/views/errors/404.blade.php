@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('page_title')Oops! Page Not Found @endsection
 @section('body_content')
 <div class="gray py-3">

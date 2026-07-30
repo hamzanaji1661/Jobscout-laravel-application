@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('page_title')Categories @endsection
 @section('body_content')
 <div class="bg-title py-5" data-overlay="0">

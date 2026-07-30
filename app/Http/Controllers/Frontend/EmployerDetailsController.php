@@ -16,7 +16,7 @@ class EmployerDetailsController extends Controller
         $employer = Employer::find($id);
         $hiring = Hiring::where('company_id', $id)->count();
         $EmployerAward = EmployerAward::where('employer_id', $id)->orderBy('award_year', 'DESC')->get();
-        return view('Frontend.employerdetails', compact('employer', 'hiring', 'EmployerAward'));
+        return view('frontend.employerdetails', compact('employer', 'hiring', 'EmployerAward'));
     }
 
     public function browseEmployer()
@@ -31,6 +31,6 @@ class EmployerDetailsController extends Controller
             return strtoupper(substr($item->employer_name, 0, 1));
 
     });
-    return view('Frontend.employerlist', compact('groupedData'));
+    return view('frontend.employerlist', compact('groupedData'));
     }
 }

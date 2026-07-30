@@ -44,7 +44,7 @@ class EmployeeController extends Controller
             return redirect()->back()->with('error', 'You have already applied for this job');
         }
         $jobDetails = Hiring::where('id', $id)->first();
-        return view('Frontend.application', compact('id', 'jobDetails', 'applicationcheck'));
+        return view('frontend.application', compact('id', 'jobDetails', 'applicationcheck'));
     }
 
     public function applyConfirm(Request $request, $id)

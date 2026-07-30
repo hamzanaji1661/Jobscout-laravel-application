@@ -129,7 +129,7 @@
                         </div>
                     </div>
                     <div class="nav-menus-wrapper" style="transition-property: none;">
-                        @include('Frontend.layouts.nav')
+                        @include('frontend.layouts.nav')
                         <ul class="nav-menu nav-menu-social align-to-right">
                             @if (Auth::guard('employer')->check())
                                 <li>

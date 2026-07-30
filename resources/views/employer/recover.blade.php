@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master')            
+@extends('frontend.layouts.master')            
 @section('page_title')Recover Employer Password @endsection
 @section('body_content')
 <div class="gray py-3">

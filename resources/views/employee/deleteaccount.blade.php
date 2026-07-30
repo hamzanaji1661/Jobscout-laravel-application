@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.masterDashboard')
+@extends('frontend.layouts.masterDashboard')
 @section('page_title')
     #1 Job Portal Company
 @endsection
@@ -6,7 +6,7 @@
     head-shadow
 @endsection
 @section('body_content')
-    @include('Frontend.layouts.employeeDashboardNav')
+    @include('frontend.layouts.employeeDashboardNav')
     <style>
         .no-select {
    -webkit-user-select: none;

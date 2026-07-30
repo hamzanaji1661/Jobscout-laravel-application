@@ -54,7 +54,7 @@ use App\Http\Livewire\Chat\Main;
 */
 
 Route::get('/chat', function () {
-    return view('Frontend.chat');
+    return view('frontend.chat');
 });
 
 

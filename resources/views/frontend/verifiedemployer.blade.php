@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('page_title')Email Verified Successfully @endsection
 @section('body_content')
 

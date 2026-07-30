@@ -1,8 +1,8 @@
-@include('Frontend.layouts.header')
+@include('frontend.layouts.header')
 
                     @yield('body_content')
 
-@include('Frontend.layouts.footerDashboard')
+@include('frontend.layouts.footerDashboard')
 
 @if($errors->any())
     @foreach($errors->all() as $error)

@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master')
+@extends('frontend.layouts.master')
 @section('page_title')Search Jobs @endsection
 @section('body_content')
 <div class="py-5 theme-bg" data-overlay="0">

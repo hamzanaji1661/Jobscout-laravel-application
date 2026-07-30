@@ -38,7 +38,7 @@
         <!-- Top header  -->
         <!-- ============================================================== -->
         @php
-            $topbarData = App\Models\Topbar::first();
+            $topbarData = App\Models\TopBar::first();
         @endphp
         @if ($topbarData->isHidden == 0)
             <div class="py-2 bg-dark">

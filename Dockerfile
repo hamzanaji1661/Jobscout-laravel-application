@@ -11,8 +11,6 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libonig-dev \
     libxml2-dev \
-    libicu-dev \
-    default-mysql-client \
     nodejs \
     npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -21,8 +19,7 @@ RUN apt-get update && apt-get install -y \
         pdo_mysql \
         mbstring \
         zip \
-        gd \
-        intl
+        gd
 
 RUN a2enmod rewrite
 
@@ -30,22 +27,12 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-COPY composer.json composer.lock ./
+COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-COPY package*.json ./
-
 RUN npm install
-
-COPY . .
-
 RUN npm run build
-
-RUN mkdir -p storage/framework/cache \
-    storage/framework/sessions \
-    storage/framework/views \
-    storage/logs
 
 RUN chown -R www-data:www-data storage bootstrap/cache
 
@@ -57,7 +44,6 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 
 EXPOSE 80
 
-CMD php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache && \
+CMD php artisan config:cache || true && \
+    php artisan route:cache || true && \
     apache2-foreground

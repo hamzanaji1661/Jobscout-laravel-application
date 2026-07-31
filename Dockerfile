@@ -42,7 +42,7 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 /etc/apache2/sites-available/*.conf \
 /etc/apache2/apache2.conf
 
-EXPOSE 80
+EXPOSE 10000
 
 CMD php artisan migrate --force && \
     php artisan config:cache && \

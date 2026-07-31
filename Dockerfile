@@ -44,7 +44,9 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 
 EXPOSE 10000
 
-CMD php artisan migrate --force && \
+CMD sed -i "s/Listen 80/Listen 10000/" /etc/apache2/ports.conf && \
+    sed -ri "s/<VirtualHost \*:80>/<VirtualHost *:10000>/" /etc/apache2/sites-available/000-default.conf && \
+    php artisan migrate --force && \
     php artisan config:cache && \
     php artisan route:cache && \
     apache2-foreground
